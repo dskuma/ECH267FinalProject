@@ -80,9 +80,11 @@ A = [0 0 0 1 0 0;
      A_I(3,1)  A_I(3,2)  A_I(3,3) 0 0 0;
  ];
 B = [0;0;0;B_I(1,1); B_I(2,1); B_I(3,1);];
-%% Attempting Pole Placememt
-%eigs = [-.09;-20;-15;-2;-6;-7;];
-%K = place(A,B,eigs)
+%% Attempting Pole Placememt Feel Free to change any eigenvalues in the matrix K. Note, since the system is highly non linear, some values may not work
+%eigs = [-.09;-20;-15;-2;-6;-7;]; % ucomment this line for Pole Placement Simulation and comment for LQR Method
+%K = place(A,B,eigs) %% ucomment this line for Pole Placement Simulation and comment for LQR Method
+
+%% Comment everything underneath this section for Pole Placement and uncomment for LQR
 Q = [200 0 0 0 0 0;
      0 200 0 0 0 0;
      0 0 200 0 0 0;
