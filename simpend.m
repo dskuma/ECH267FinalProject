@@ -20,6 +20,10 @@ for i = 1:length(t)
  dx(i,:) = pendcart(x(i,:),u(x(i)));
 end
 
+
+
+
+
 % figure(1)
 % subplot(3,1,1)
 % plot(t,rad2deg(x(:,3)));
@@ -94,41 +98,49 @@ end
 % saveas(gcf,'Accelerations_LQR_E4.png')
 % hold off
 % 
-figure(5)
 
-subplot(3,1,1)
-plot(t,x(:,1));
-xlabel('Time in secs')
-ylabel('Position of cart')
-hold on
-%
-subplot(3,1,2)
-plot(t,x(:,4));
-xlabel('Time in secs')
-ylabel('Velocity of cart')
-%sgtitle('Velocity for Cart and pendulum for LQR')
-sgtitle('Cart Behaviour - LQR')
-
-subplot(3,1,3)
-plot(t,dx(:,4));
-xlabel('Time in secs')
-ylabel('Acceleration of cart')
-
-set(gcf, 'PaperUnits', 'inches');
-x_width=7.25 ;y_width=9.125;
-set(gcf, 'PaperPosition', [0 0 x_width y_width]); %
-saveas(gcf,'Cart_LQR_E4.png')
-hold off
+% figure(5)
+% 
+% subplot(3,1,1)
+% plot(t,x(:,1));
+% xlabel('Time in secs')
+% ylabel('Position of cart')
+% hold on
+% %
+% subplot(3,1,2)
+% plot(t,x(:,4));
+% xlabel('Time in secs')
+% ylabel('Velocity of cart')
+% %sgtitle('Velocity for Cart and pendulum for LQR')
+% sgtitle(F)
+% 
+% subplot(3,1,3)
+% plot(t,dx(:,4));
+% xlabel('Time in secs')
+% ylabel('Acceleration of cart')
+% 
+% set(gcf, 'PaperUnits', 'inches');
+% x_width=7.25 ;y_width=9.125;
+% set(gcf, 'PaperPosition', [0 0 x_width y_width]); %
+% saveas(gcf,F1)
+% hold off
 
 
 
 
 %t,x] = ode45(@(t,x)pendcart(x,u(x),tspan,x0));
 %%
+myVideo = VideoWriter('Video_LQR_E3');
+myVideo.FrameRate = 30;
+open(myVideo)
+for k=1:length(t)
+    drawpend(x(k,:));
+    pause(0.01)
+    frame = getframe(gcf);
+    writeVideo(myVideo,frame);
+end
+close(myVideo);
 
-% for k=1:length(t)
-%     drawpend(x(k,:));
-%  end
 
 % function dy = pendcart(y,m,M,L,g,d,u)
 
